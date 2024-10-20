@@ -1,0 +1,47 @@
+body {
+    margin: 0; /* Remove default margin */
+}
+
+/* -- Toolbar -- */
+#banner {
+    background-color: gray;
+    height: 40px;
+    width: 1fr;
+    display: flex; /* Flexbox */
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0px 20px 0px; /* May need to swap to margin */
+    margin: 10px 10% 0px 10%; /* Margins cannot exceed 10% due to browser transformations */
+    border-radius: 5px;
+}
+
+#toolbar {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    margin: 0
+}
+
+#toolbar li {
+    margin: 0 7px; /* Horizontal Padding between buttons */
+}
+
+#toolbar button{
+    padding: 10px 10px; /* Padding around button text */
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#toolbar button:hover{
+    background-color: #0084ff; /* Blue */
+    color: white; /* Assumes font Colour */
+    transform: scale(1.2);
+}
+
+/* Note:
+Set button colour to (selected pen colour, default black) upon selection in the button box
+Set size ... " " " " ... in the button box (may require more default images or scaled)
+*/
