@@ -1,18 +1,19 @@
 body {
     margin: 0; /* Remove default margin */
+    padding: 0;
 }
 
 /* -- Toolbar -- */
 #banner {
     background-color: gray;
     height: 40px;
-    width: 1fr;
+    width: 100%;
     display: flex; /* Flexbox */
     align-items: center;
     justify-content: center;
     padding: 20px 0px 20px 0px; /* May need to swap to margin */
-    margin: 10px 10% 0px 10%; /* Margins cannot exceed 10% due to browser transformations */
-    border-radius: 5px;
+    margin: 0px; /* Margins cannot exceed 10% due to browser transformations */
+    border-radius: 0px;
 }
 
 #toolbar {
@@ -45,3 +46,14 @@ body {
 Set button colour to (selected pen colour, default black) upon selection in the button box
 Set size ... " " " " ... in the button box (may require more default images or scaled)
 */
+
+#whiteboard_area{
+    background-color: brown;
+    height: 50%; /* Note: Will need to adjust to set height properly */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 0px;
+}
