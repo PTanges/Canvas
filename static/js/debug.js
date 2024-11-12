@@ -1,3 +1,5 @@
+const is_debug = true;
+
 function set_debug_backgrounds(){
     let debug_sections = {
         'header':'orange',
@@ -15,4 +17,4 @@ function set_debug_backgrounds(){
     }
 }
 
-set_debug_backgrounds();
+if (is_debug){set_debug_backgrounds();}
