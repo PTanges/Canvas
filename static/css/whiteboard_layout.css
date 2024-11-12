@@ -18,7 +18,7 @@ body {
         "footer         footer          footer";
 
     margin: 0px;
-    padding: 10px;
+    padding: 0px;
 
     font-weight: bold;
     font-size: 20px;
@@ -31,42 +31,49 @@ body {
     grid-area: header;
     background: white;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .banner{
     grid-area: banner;
     background: white;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .left-aside{
     grid-area: left-aside;
     background: white;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .right-aside{
     grid-area: right-aside;
     background: white;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .main{
     grid-area: main;
     background: white;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .low-content{
     grid-area: low-content;
     background: white;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .footer{
     grid-area: footer;
     background: white;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 /* -- Toolbar -- */

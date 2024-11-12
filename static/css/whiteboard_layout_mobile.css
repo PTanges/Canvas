@@ -1,5 +1,5 @@
 .container{
-    grid-template-rows: 50px 50px 50px 1fr 50px 50px 50px;
+    grid-template-rows: auto auto auto 1fr auto auto auto;
     grid-template-columns: 1fr;
     grid-template-areas:
         "header"
