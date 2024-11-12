@@ -1,44 +1,57 @@
 /* whiteboard javascript */
 
-/* Create 2D context object */
-console.log("HELLO WORLD")
+/* Create Canvas Logic */
+var canvas = document.getElementById('whiteboard');
+var context = canvas.getContext('2d');
 
+context.width = window.innerWidth;
+context.height = window.innerHeight;
 
-const canvas = document.getElementById('whiteboard');
-const ctx = canvas.getContext('2d');
-
-canvas.height = window.innerHeight - 0;
-canvas.width = window.innerWidth - 0;
-
-function drawRect(x, y, width, height, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, width, height);
-}
+canvas.height = document.getElementsByClassName('main')[0].clientHeight;
+canvas.width = document.getElementsByClassName('main')[0].clientWidth;
 
 let isMouseDrawing = false;
 
+/* Draw Border */
+/* To Do: Update canvas dimensions & size with event resize */
+context.strokeStyle = 'white';
+context.lineWidth = '10';
+context.strokeRect(0, 0, document.getElementsByClassName('main')[0].clientWidth, document.getElementsByClassName('main')[0].clientHeight-10);
+
+/* Canvas Drawing Functionality */
 canvas.addEventListener('mousedown', (event) =>{
     isMouseDrawing = true;
-    ctx.moveTo(event.offsetX, event.offsetY);
+    context.moveTo(event.offsetX, event.offsetY);
 });
 
 canvas.addEventListener('mouseup', (event) =>{
     isMouseDrawing = false;
-    ctx.beginPath();
+    context.beginPath();
 });
-
-/* Note: May need to end stroke when mouse exists the canvas, with added margins */
-/* canvas.addEventListener('mouseout', (event)) =>{
-}; */
 
 canvas.addEventListener('mousemove', update);
 
 function update(event){
     if (isMouseDrawing) {
-        ctx.lineWidth = 5; /* Pen Size */
-        ctx.lineCap = "round"; /* Pen Type */
-        ctx.strokeStyle = "black"; /* Pen Colour */
-        ctx.lineTo(event.offsetX, event.offsetY);
-        ctx.stroke();
+        context.lineWidth = 5; /* Pen Size */
+        context.lineCap = "round"; /* Pen Type */
+        context.strokeStyle = "black"; /* Pen Colour */
+        context.lineTo(event.offsetX, event.offsetY);
+        context.stroke();
     } /* end if */
 }
+
+/* Button Commands */
+function clearCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+/* Note: Look at AJAX JS
+function randomizeBackground(x, y, width, height, color) {
+    console.log("Hello")
+    blue = #0084ff;
+    canvas.color = blue;
+    context.fillStyle =
+    context.fillRect(x, y, width, height, color);
+}
+*/

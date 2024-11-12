@@ -2,17 +2,84 @@ body {
     margin: 0; /* Remove default margin */
     padding: 0;
 }
+/* Container */
+.container{
+    display: grid;
+    grid-template-rows: 60px auto 1fr auto 40px;
+    grid-template-columns: 1fr 4fr 1fr;
+    height: 100vh;
+
+    grid-gap: 0px;
+    grid-template-areas:
+        "header         header          header"
+        "left-aside     banner          right-aside"
+        "left-aside     main            right-aside"
+        "left-aside     low-content     right-aside"
+        "footer         footer          footer";
+
+    margin: 0px;
+    padding: 10px;
+
+    font-weight: bold;
+    font-size: 20px;
+
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.header{
+    grid-area: header;
+    background: orange;
+    box-sizing: border-box;
+}
+
+.banner{
+    grid-area: banner;
+    background: red;
+    box-sizing: border-box;
+}
+
+.left-aside{
+    grid-area: left-aside;
+    background: green;
+    box-sizing: border-box;
+}
+
+.right-aside{
+    grid-area: right-aside;
+    background: orange;
+    box-sizing: border-box;
+}
+
+.main{
+    grid-area: main;
+    background: blue;
+    box-sizing: border-box;
+}
+
+.low-content{
+    grid-area: low-content;
+    background: green;
+    box-sizing: border-box;
+}
+
+.footer{
+    grid-area: footer;
+    background: blue;
+    box-sizing: border-box;
+}
 
 /* -- Toolbar -- */
+/*
 #banner {
     background-color: gray;
     height: 40px;
     width: 100%;
-    display: flex; /* Flexbox */
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 0px 20px 0px; /* May need to swap to margin */
-    margin: 0px; /* Margins cannot exceed 10% due to browser transformations */
+    padding: 20px 0px 20px 0px;
+    margin: 0px;
     border-radius: 0px;
 }
 
@@ -24,32 +91,40 @@ body {
 }
 
 #toolbar li {
-    margin: 0 7px; /* Horizontal Padding between buttons */
+    margin: 0 7px;
 }
 
 #toolbar button{
-    padding: 10px 10px; /* Padding around button text */
+    padding: 10px 10px;
     background-color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px; /* Rounded corners */
+    border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #toolbar button:hover{
-    background-color: #0084ff; /* Blue */
-    color: white; /* Assumes font Colour */
+    background-color: #0084ff;
+    color: white;
     transform: scale(1.2);
 }
+*/
 
 /* Note:
 Set button colour to (selected pen colour, default black) upon selection in the button box
 Set size ... " " " " ... in the button box (may require more default images or scaled)
 */
 
+#whiteboard{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/*
 #whiteboard_area{
     background-color: brown;
-    height: 50%; /* Note: Will need to adjust to set height properly */
+    height: 50%; Note: Will need to adjust to set height properly
     width: 100%;
     align-items: center;
     justify-content: center;
@@ -57,3 +132,4 @@ Set size ... " " " " ... in the button box (may require more default images or s
     padding: 0px;
     border-radius: 0px;
 }
+*/

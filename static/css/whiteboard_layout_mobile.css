@@ -1,0 +1,12 @@
+.container{
+    grid-template-rows: 50px 50px 50px 1fr 50px 50px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "banner"
+        "left-aside"
+        "main"
+        "right-aside"
+        "low-content"
+        "footer";
+}

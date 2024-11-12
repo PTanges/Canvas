@@ -5,16 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/whiteboard_layout.css">
+    <link rel="stylesheet" href="static/css/whiteboard_layout_mobile.css" media="(max-width: 768px)">
+
     <title>Canvas</title>
 </head>
 
 <body>
+    <div class="container">
+        <div class="header">
+
+        </div>
+
+        <div class="banner">
+
+        </div>
+
+        <div class="left-aside">
+
+        </div>
+
+        <div class="main">
+            <canvas id="whiteboard"></canvas>
+
+            <script src="static/js/whiteboard.js"></script>
+        </div>
+
+        <div class="right-aside">
+
+        </div>
+
+        <div class="low-content">
+
+        </div>
+
+        <div class="footer">
+
+        </div>
+    </div>
+
+    <!--
     <div id="banner">
         <ul id="toolbar">
             <li><button>Pen</button></li>
             <li><button>Eraser</button></li>
             <li><button>Size</button></li>
-            <li><button>Colour</button></li>
+            <li><button onclick="randomizeBackground()">Colour</button></li>
+            <li><button onclick="clearCanvas()">Clear Canvas</button></li>
             <li><button>Undo</button></li>
             <li><button>Redo</button></li>
         </ul>
@@ -23,6 +59,8 @@
         <canvas id="whiteboard" width="800" height="600"></canvas>
         <script src="static/js/whiteboard.js"></script>
     </div>
+    -->
+
     <!-- Comment -->
 </body>
 </html>
