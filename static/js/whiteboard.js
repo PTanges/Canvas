@@ -6,7 +6,7 @@ let context = canvas.getContext('2d');
 
 let isMouseDrawing = false;
 
-function initialize(){
+function initialize(event){
     canvas.height = document.getElementsByClassName('main')[0].clientHeight;
     canvas.width = document.getElementsByClassName('main')[0].clientWidth;
 
@@ -22,10 +22,20 @@ function initialize(){
 
     canvas.addEventListener('mousemove', draw_update);
 
+    canvas.addEventListener("mouseleave", _end_stroke);
+    canvas.addEventListener("mousein", _track_new_mouse_position);
+
     console.log("HERE")
     window.addEventListener('resize', resize_canvas, false);
 }
 
+function _end_stroke(event){
+    isMouseDrawing = false;
+}
+
+function _track_new_mouse_position(event){
+    context.beginPath();
+}
 
 function draw_update(event){
     if (isMouseDrawing) {
