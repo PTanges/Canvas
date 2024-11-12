@@ -29,43 +29,43 @@ body {
 
 .header{
     grid-area: header;
-    background: orange;
+    background: white;
     box-sizing: border-box;
 }
 
 .banner{
     grid-area: banner;
-    background: red;
+    background: white;
     box-sizing: border-box;
 }
 
 .left-aside{
     grid-area: left-aside;
-    background: green;
+    background: white;
     box-sizing: border-box;
 }
 
 .right-aside{
     grid-area: right-aside;
-    background: orange;
+    background: white;
     box-sizing: border-box;
 }
 
 .main{
     grid-area: main;
-    background: blue;
+    background: white;
     box-sizing: border-box;
 }
 
 .low-content{
     grid-area: low-content;
-    background: green;
+    background: white;
     box-sizing: border-box;
 }
 
 .footer{
     grid-area: footer;
-    background: blue;
+    background: white;
     box-sizing: border-box;
 }
 
@@ -120,16 +120,3 @@ Set size ... " " " " ... in the button box (may require more default images or s
     padding: 0px;
     box-sizing: border-box;
 }
-
-/*
-#whiteboard_area{
-    background-color: brown;
-    height: 50%; Note: Will need to adjust to set height properly
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    margin: 0px;
-    padding: 0px;
-    border-radius: 0px;
-}
-*/

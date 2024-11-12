@@ -1,8 +1,8 @@
 /* whiteboard javascript */
 
 /* Create Canvas Logic */
-var canvas = document.getElementById('whiteboard');
-var context = canvas.getContext('2d');
+let canvas = document.getElementById('whiteboard');
+let context = canvas.getContext('2d');
 
 context.width = window.innerWidth;
 context.height = window.innerHeight;
