@@ -59,13 +59,7 @@ function mouse_up(event){
 }
 
 function draw_update(event){
-    if (isMouseDrawing && (isMouseHovering == false)){
-        context.lineTo(event.offsetX, event.offsetY);
-        context.stroke();
-
-        context.lineWidth = 0;
-    }
-    else if (isMouseDrawing && isMouseHovering) {
+    if (isMouseDrawing && isMouseHovering) {
         context.lineWidth = 5; /* Pen Size */
         context.lineCap = "round"; /* Pen Type */
         context.strokeStyle = "black"; /* Pen Colour */
