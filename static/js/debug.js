@@ -1,4 +1,4 @@
-const is_debug = true;
+const is_debug = false;
 
 function set_debug_backgrounds(){
     let debug_sections = {
