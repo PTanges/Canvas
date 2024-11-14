@@ -1,44 +1,71 @@
 /* whiteboard javascript */
 
 /* Create Canvas Logic */
-let canvas = document.getElementById('whiteboard');
-let context = canvas.getContext('2d');
+var canvas = document.getElementById('whiteboard');
+var context = canvas.getContext('2d');
 
-let isMouseDrawing = false;
+var isMouseDrawing = false;
+var isMouseHovering = false;
 
 function initialize(event){
     canvas.height = document.getElementsByClassName('main')[0].clientHeight;
     canvas.width = document.getElementsByClassName('main')[0].clientWidth;
 
-    canvas.addEventListener('mousedown', (event) =>{
-        isMouseDrawing = true;
-        context.moveTo(event.offsetX, event.offsetY);
-    });
-
-    canvas.addEventListener('mouseup', (event) =>{
-        isMouseDrawing = false;
-        context.beginPath();
-    });
-
+    canvas.addEventListener('mouseup', mouse_up);
+    canvas.addEventListener('mousedown', mouse_down);
+    canvas.addEventListener("mouseenter", mouse_enter_canvas);
+    canvas.addEventListener("mouseleave", mouse_exit_canvas);
     canvas.addEventListener('mousemove', draw_update);
 
-    canvas.addEventListener("mouseleave", _end_stroke);
-    canvas.addEventListener("mousein", _track_new_mouse_position);
-
-    console.log("HERE")
     window.addEventListener('resize', resize_canvas, false);
 }
 
-function _end_stroke(event){
-    isMouseDrawing = false;
+/* To Do:
+Implement Conditionals for the mouse actions to ensure proper functionality
+- Draw in the canvas
+- Line stops upon reaching canvas edge (mousedown)
+- Line continues upon re-entering canvas edge (mousedown)
+- Line data isn't messed up by (mouseup) outside of canvas
+
+        isMouseDrawing = false;
+        context.beginPath();
+
+        isMouseDrawing = true;
+        context.moveTo(event.offsetX, event.offsetY);
+*/
+
+function mouse_enter_canvas(event){
+    isMouseHovering = true;
+    context.beginPath();
+    console.log("Mouse Enter: Hovering True")
 }
 
-function _track_new_mouse_position(event){
+function mouse_exit_canvas(event){
+    isMouseHovering = false;
+    context.closePath();
+    console.log("Mouse Exit: Hovering False")
+}
+
+function mouse_down(event){
+    isMouseDrawing = true;
     context.beginPath();
+    console.log("Mouse Down: Drawing True")
+}
+
+function mouse_up(event){
+    isMouseDrawing = false;
+    context.closePath();
+    console.log("Mouse Up: Drawing False")
 }
 
 function draw_update(event){
-    if (isMouseDrawing) {
+    if (isMouseDrawing && (isMouseHovering == false)){
+        context.lineTo(event.offsetX, event.offsetY);
+        context.stroke();
+
+        context.lineWidth = 0;
+    }
+    else if (isMouseDrawing && isMouseHovering) {
         context.lineWidth = 5; /* Pen Size */
         context.lineCap = "round"; /* Pen Type */
         context.strokeStyle = "black"; /* Pen Colour */
