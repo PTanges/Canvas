@@ -37,25 +37,21 @@ Implement Conditionals for the mouse actions to ensure proper functionality
 function mouse_enter_canvas(event){
     isMouseHovering = true;
     context.beginPath();
-    console.log("Mouse Enter: Hovering True")
 }
 
 function mouse_exit_canvas(event){
     isMouseHovering = false;
     context.closePath();
-    console.log("Mouse Exit: Hovering False")
 }
 
 function mouse_down(event){
     isMouseDrawing = true;
     context.beginPath();
-    console.log("Mouse Down: Drawing True")
 }
 
 function mouse_up(event){
     isMouseDrawing = false;
     context.closePath();
-    console.log("Mouse Up: Drawing False")
 }
 
 function draw_update(event){
@@ -88,16 +84,6 @@ function resize_canvas(event){
 function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-/* Note: Look at AJAX JS
-function randomizeBackground(x, y, width, height, color) {
-    console.log("Hello")
-    blue = #0084ff;
-    canvas.color = blue;
-    context.fillStyle =
-    context.fillRect(x, y, width, height, color);
-}
-*/
 
 document.addEventListener("DOMContentLoaded", initialize, {once : true});
 document.addEventListener("DOMContentLoaded", () => {

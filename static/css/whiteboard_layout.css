@@ -29,28 +29,28 @@ body {
 
 .header{
     grid-area: header;
-    background: white;
+    background: #2B2D30;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 .banner{
     grid-area: banner;
-    background: white;
+    background: #2B2D30;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 .left-aside{
     grid-area: left-aside;
-    background: white;
+    background: #2B2D30;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 .right-aside{
     grid-area: right-aside;
-    background: white;
+    background: #2B2D30;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -64,41 +64,35 @@ body {
 
 .low-content{
     grid-area: low-content;
-    background: white;
+    background: #2B2D30;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 .footer{
     grid-area: footer;
-    background: white;
+    background: #2B2D30;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 /* -- Toolbar -- */
-/*
-#banner {
-    background-color: gray;
-    height: 40px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0px 20px 0px;
-    margin: 0px;
-    border-radius: 0px;
-}
-
 #toolbar {
-    list-style-type: none;
-    padding: 0;
+    padding: 1em;
+    margin: 0;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
     display: flex;
-    margin: 0
+    flex-direction: column;
+    list-style: none;
 }
 
 #toolbar li {
-    margin: 0 7px;
+    padding: 0.25em;
+
+    width: 25%;
 }
 
 #toolbar button{
@@ -115,7 +109,6 @@ body {
     color: white;
     transform: scale(1.2);
 }
-*/
 
 /* Note:
 Set button colour to (selected pen colour, default black) upon selection in the button box
