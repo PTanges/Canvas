@@ -1,91 +1,85 @@
 /* whiteboard javascript */
 
 /* Create Canvas Logic */
-var canvas = document.getElementById('whiteboard');
-var context = canvas.getContext('2d');
+class Whiteboard{
+    constructor(){
+        this._canvas = document.getElementById('whiteboard');;
+        this._context = this._canvas.getContext('2d');
 
-var isMouseDrawing = false;
-var isMouseHovering = false;
+        this._isMouseDrawing = false;
+        this._isMouseHovering = false;
+    }
 
-function initialize(event){
-    canvas.height = document.getElementsByClassName('main')[0].clientHeight;
-    canvas.width = document.getElementsByClassName('main')[0].clientWidth;
+    initialize(){
+        this._canvas.height = document.getElementsByClassName('main')[0].clientHeight;
+        this._canvas.width = document.getElementsByClassName('main')[0].clientWidth;
 
-    canvas.addEventListener('mouseup', mouse_up);
-    canvas.addEventListener('mousedown', mouse_down);
-    canvas.addEventListener("mouseenter", mouse_enter_canvas);
-    canvas.addEventListener("mouseleave", mouse_exit_canvas);
-    canvas.addEventListener('mousemove', draw_update);
+        /* Retain reference pointer lost with intra-class events with bind(this) */
+        this._canvas.addEventListener('mouseup', this.mouse_up.bind(this));
+        this._canvas.addEventListener('mousedown', this.mouse_down.bind(this));
+        this._canvas.addEventListener("mouseenter", this.mouse_enter_canvas.bind(this));
+        this._canvas.addEventListener("mouseleave", this.mouse_exit_canvas.bind(this));
+        this._canvas.addEventListener('mousemove', this.draw_update.bind(this));
 
-    window.addEventListener('resize', resize_canvas, false);
-}
+        window.addEventListener('resize', this.resize_canvas, false);
+        this.resize_canvas();
+    }
 
-/* To Do:
-Implement Conditionals for the mouse actions to ensure proper functionality
-- Draw in the canvas
-- Line stops upon reaching canvas edge (mousedown)
-- Line continues upon re-entering canvas edge (mousedown)
-- Line data isn't messed up by (mouseup) outside of canvas
+    mouse_enter_canvas(event){
+        this._isMouseHovering = true;
+        this._context.beginPath();
+    }
 
-        isMouseDrawing = false;
-        context.beginPath();
+    mouse_exit_canvas(event){
+        this._isMouseHovering = false;
+        this._context.closePath();
+    }
 
-        isMouseDrawing = true;
-        context.moveTo(event.offsetX, event.offsetY);
-*/
+    mouse_down(event){
+        this._isMouseDrawing = true;
+        this._context.beginPath();
+    }
 
-function mouse_enter_canvas(event){
-    isMouseHovering = true;
-    context.beginPath();
-}
+    mouse_up(event){
+        this._isMouseDrawing = false;
+        this._context.closePath();
+    }
 
-function mouse_exit_canvas(event){
-    isMouseHovering = false;
-    context.closePath();
-}
+    draw_update(event){
+        if (this._isMouseDrawing && this._isMouseHovering) {
+            this._context.lineWidth = 5; /* Pen Size */
+            this._context.lineCap = "round"; /* Pen Type */
+            this._context.strokeStyle = "black"; /* Pen Colour */
+            this._context.lineTo(event.offsetX, event.offsetY);
+            this._context.stroke();
+        } /* end if */
+    }
 
-function mouse_down(event){
-    isMouseDrawing = true;
-    context.beginPath();
-}
+    resize_canvas(event){
+        /* Save existing Canvas */
+        const data_url = this._canvas.toDataURL();
 
-function mouse_up(event){
-    isMouseDrawing = false;
-    context.closePath();
-}
+        /* Resize Canvas, note: context.h/w automatically get updated */
+        this._canvas.height = this._context.height = document.getElementsByClassName('main')[0].clientHeight;
+        this._canvas.width = this._context.width = document.getElementsByClassName('main')[0].clientWidth;
 
-function draw_update(event){
-    if (isMouseDrawing && isMouseHovering) {
-        context.lineWidth = 5; /* Pen Size */
-        context.lineCap = "round"; /* Pen Type */
-        context.strokeStyle = "black"; /* Pen Colour */
-        context.lineTo(event.offsetX, event.offsetY);
-        context.stroke();
-    } /* end if */
-}
+        /* Apply saved image to new Canvas */
+        const image = new Image();
+        image.src = data_url;
+        image.onload = () => {
+            this._context.drawImage(image, 0, 0);
+        };
+    }
 
-function resize_canvas(event){
-    /* Save existing Canvas */
-    const data_url = canvas.toDataURL();
-
-    /* Resize Canvas, note: context.h/w automatically get updated */
-    canvas.height = document.getElementsByClassName('main')[0].clientHeight;
-    canvas.width = context.width = document.getElementsByClassName('main')[0].clientWidth;
-
-    /* Apply saved image to new Canvas */
-    const image = new Image();
-    image.src = data_url;
-    image.onload = () => {
-        context.drawImage(image, 0, 0);
-    };
+    clear_canvas(){
+        this._context.clearRect(0, 0, this._canvas.width, this._canvas.height);
+    }
 }
 
 /* Button Commands */
-function clearCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+function clear_canvas() {
+    whiteboard.clear_canvas();
 }
 
-document.addEventListener("DOMContentLoaded", initialize, {once : true});
-document.addEventListener("DOMContentLoaded", () => {
-    resize_canvas();
-});
+var whiteboard = new Whiteboard();
+whiteboard.initialize();
