@@ -97,7 +97,8 @@ body {
 
 #toolbar button{
     padding: 10px 10px;
-    background-color: white;
+    background-color: #1e90ff;
+    color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -105,8 +106,7 @@ body {
 }
 
 #toolbar button:hover{
-    background-color: #0084ff;
-    color: white;
+    background-color: #1e90ff;
     transform: scale(1.2);
 }
 
