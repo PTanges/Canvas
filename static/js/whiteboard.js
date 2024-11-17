@@ -21,7 +21,7 @@ class Whiteboard{
         this._canvas.addEventListener("mouseleave", this.mouse_exit_canvas.bind(this));
         this._canvas.addEventListener('mousemove', this.draw_update.bind(this));
 
-        window.addEventListener('resize', this.resize_canvas, false);
+        window.addEventListener('resize', this.resize_canvas.bind(this), false);
         this.resize_canvas();
     }
 
@@ -57,15 +57,15 @@ class Whiteboard{
 
     resize_canvas(event){
         /* Save existing Canvas */
-        const data_url = this._canvas.toDataURL();
+        let image = new Image();
+        const data_url = this._canvas.toDataURL("image/png"); // Default: png
+        image.src = data_url;
 
         /* Resize Canvas, note: context.h/w automatically get updated */
         this._canvas.height = this._context.height = document.getElementsByClassName('main')[0].clientHeight;
         this._canvas.width = this._context.width = document.getElementsByClassName('main')[0].clientWidth;
 
         /* Apply saved image to new Canvas */
-        const image = new Image();
-        image.src = data_url;
         image.onload = () => {
             this._context.drawImage(image, 0, 0);
         };
