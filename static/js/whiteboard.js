@@ -9,9 +9,10 @@ class Whiteboard{
         this._isMouseDrawing = false;
         this._isMouseHovering = false;
 
-        this._tool_sizes = [1, 3, 5, 7, 10];
+        this._tool_sizes = [1, 3, 5, 7, 12];
+        this._size_display_names = ["X-Small", "Small", "Medium", "Large", "X-Large"];
         this._default_tool_colour = {"pen":"black", "eraser":"white"};
-        this._brush_colours = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+        this._brush_colours = ["#E06666", "orange", "#FFD966", "green", "blue", "indigo", "violet"];
         this._last_tool_size_index = 2;
         this._last_colour_index = -1; // Selection increments, -1 to start with red
         this.tools = ["pen", "eraser", "paintbrush"];
@@ -34,7 +35,7 @@ class Whiteboard{
 
         window.addEventListener('resize', this.resize_canvas.bind(this), false);
         this.resize_canvas();
-        update_selected_tool_UI("pen");
+        update_selected_tool_backgroundColor("pen");
     }
 
     mouse_enter_canvas(event){
@@ -153,6 +154,10 @@ class Whiteboard{
     get_tools(){
         return this.tools;
     }
+
+    get_current_tool_size(){
+        return this._size_display_names[this._last_tool_size_index];
+    }
 }
 
 /* Button Commands */
@@ -162,25 +167,40 @@ function clear_canvas() {
 
 function select_tool(tool_name){
     whiteboard.select_tool(tool_name);
-    update_selected_tool_UI(tool_name);
+    update_selected_tool_background_colour();
 }
 
 function cycle_size(){
     whiteboard.cycle_tool_size();
+
+    document.getElementById("tool_size").innerHTML = "Size: " + whiteboard.get_current_tool_size();
 }
 
-function update_selected_tool_UI(next_tool){
+function update_selected_tool_background_colour(){
     const tools = whiteboard.get_tools();
-    const current_tool = whiteboard.get_current_tool();
-    const colour = whiteboard.get_current_colour();
+    const selected_tool = whiteboard.get_current_tool();
+
+    const default_background_colour = "#1e90ff"; // Blue
+    const selected_tool_background_colour = "#E16F00"; // Orange
+
+    if (selected_tool == "paintbrush"){
+        document.getElementById("paintbrush").style.backgroundColor = whiteboard.get_current_colour();
+    }
 
     for (let i = 0; i < tools.length; i++){
-        let element = document.getElementById(tools[i]);
-        if (element.innerHTML.toLowerCase() == next_tool){
-            element.style.backgroundColor = "#E16F00"; // Orange
+        let tool_button = document.getElementById(tools[i]);
+
+        if (tool_button.innerHTML.toLowerCase() != selected_tool){
+            tool_button.style.backgroundColor = default_background_colour;
+            continue;
         }
-        else{ element.style.backgroundColor = "#1e90ff";}
+
+        if (selected_tool != "paintbrush"){
+            tool_button.style.backgroundColor = selected_tool_background_colour;
+        }
     }
+
+
 }
 
 var whiteboard = new Whiteboard();

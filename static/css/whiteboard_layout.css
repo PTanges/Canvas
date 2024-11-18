@@ -96,6 +96,7 @@ body {
 }
 
 #toolbar button{
+    position: relative;
     padding: 10px 10px;
     background-color: #1e90ff;
     color: white;
@@ -106,14 +107,8 @@ body {
 }
 
 #toolbar button:hover{
-    background-color: #1e90ff;
     transform: scale(1.2);
 }
-
-/* Note:
-Set button colour to (selected pen colour, default black) upon selection in the button box
-Set size ... " " " " ... in the button box (may require more default images or scaled)
-*/
 
 #whiteboard{
     margin: 0px;
