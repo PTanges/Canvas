@@ -10,8 +10,7 @@ class Whiteboard{
         this._isMouseHovering = false;
 
         this._tool_sizes = [1, 3, 5, 7, 10];
-        this._default_pen_colour = "black";
-        this._default_eraser_colour = "white";
+        this._default_tool_colour = {"pen":"black", "eraser":"white"};
         this._brush_colours = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
         this._last_tool_size_index = 2;
         this._last_colour_index = -1; // Selection increments, -1 to start with red
@@ -62,9 +61,9 @@ class Whiteboard{
         if (!this._isMouseDrawing || !this._isMouseHovering) { return; }
 
         switch (this.current_tool){
-            case "eraser": { this._erase_line(); }
-            case "pen": { this._draw_line(); }
-            case "paintbrush": { this._draw_line(); }
+            case "eraser": { this._erase_line(); break; }
+            case "pen": { this._draw_line(); break; }
+            case "paintbrush": { this._draw_line(); break; }
         }
     }
 
@@ -112,9 +111,12 @@ class Whiteboard{
     select_tool(tool){
         this.current_tool = tool;
 
-        if (tool == "paintbrush"){ this._change_paintbrush_colour(); }
-        else if (tool == "pen"){ this.current_colour = "black"; }
-        else if (tool == "eraser"){ this.current_colour = "white"; }
+        switch (tool){
+            case "paintbrush": { this._change_paintbrush_colour(); break; }
+            case "pen": { this._set_colour_to_tool_default(tool); break;}
+            case "eraser": { this._set_colour_to_tool_default(tool); break; }
+        }
+
     }
 
     cycle_tool_size(){
@@ -122,6 +124,10 @@ class Whiteboard{
         this._last_tool_size_index = this._increment_array_indexer(len, this._last_tool_size_index);
 
         this.current_tool_size = this._tool_sizes[this._last_tool_size_index];
+    }
+
+    _set_colour_to_tool_default(tool){
+        this.current_colour = this._default_tool_colour[tool];
     }
 
     _change_paintbrush_colour(){
