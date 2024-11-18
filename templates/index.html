@@ -5,24 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/whiteboard_layout.css">
+    <link rel="stylesheet" href="static/css/whiteboard_layout_mobile.css" media="(max-width: 768px)">
+
     <title>Canvas</title>
 </head>
 
 <body>
-    <div id="banner">
-        <ul id="toolbar">
-            <li><button>Pen</button></li>
-            <li><button>Eraser</button></li>
-            <li><button>Size</button></li>
-            <li><button>Colour</button></li>
-            <li><button>Undo</button></li>
-            <li><button>Redo</button></li>
-        </ul>
-    </div>
-    <div id="whiteboard_area">
-        <canvas id="whiteboard" width="800" height="600"></canvas>
+    <div class="container">
+        <div class="header">
+
+        </div>
+
+        <div class="banner">
+
+        </div>
+
+        <div class="left-aside">
+            <ul id="toolbar">
+                <li><button id="pen" onclick="select_tool('pen')">Pen</button></li>
+                <li><button id="eraser" onclick="select_tool('eraser')">Eraser</button></li>
+                <li><button id="tool_size" onclick="cycle_size()">Size: Default</button></li>
+                <li><button id="paintbrush" onclick="select_tool('paintbrush')">Paintbrush</button></li>
+                <li><button onclick="clear_canvas()">Clear Canvas</button></li>
+                <!-- To Do: Cache actions into session for data transfer
+                <li><button>Undo</button></li>
+                <li><button>Redo</button></li>
+                -->
+            </ul>
+        </div>
+
+        <div class="main">
+            <canvas id="whiteboard"></canvas>
+        </div>
+
+        <div class="right-aside">
+
+        </div>
+
+        <div class="low-content">
+
+        </div>
+
+        <div class="footer">
+
+        </div>
         <script src="static/js/whiteboard.js"></script>
     </div>
-    <!-- Comment -->
 </body>
 </html>

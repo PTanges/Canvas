@@ -1,0 +1,12 @@
+.container{
+    grid-template-rows: auto auto auto 1fr auto auto auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "banner"
+        "left-aside"
+        "main"
+        "right-aside"
+        "low-content"
+        "footer";
+}
