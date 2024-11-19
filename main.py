@@ -1,3 +1,4 @@
+# Canvas Front-End Logic
 from flask import Flask
 from flask import render_template
 
