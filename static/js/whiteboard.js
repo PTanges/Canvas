@@ -35,7 +35,7 @@ class Whiteboard{
 
         window.addEventListener('resize', this.resize_canvas.bind(this), false);
         this.resize_canvas();
-        update_selected_tool_backgroundColor("pen");
+        update_selected_tool_background_colour("pen");
     }
 
     mouse_enter_canvas(event){
