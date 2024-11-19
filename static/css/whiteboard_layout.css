@@ -76,6 +76,14 @@ body {
     overflow: hidden;
 }
 
+/* -- Incoming Message -- */
+#web-message{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: white;
+}
+
 /* -- Toolbar -- */
 #toolbar {
     padding: 1em;

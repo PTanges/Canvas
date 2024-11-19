@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/whiteboard_layout.css">
     <link rel="stylesheet" href="static/css/whiteboard_layout_mobile.css" media="(max-width: 768px)">
-
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <title>Canvas</title>
 </head>
 
 <body>
     <div class="container">
         <div class="header">
-
+            <p id="web-message"></p>
         </div>
 
         <div class="banner">
@@ -26,12 +26,13 @@
                 <li><button id="eraser" onclick="select_tool('eraser')">Eraser</button></li>
                 <li><button id="tool_size" onclick="cycle_size()">Size: Default</button></li>
                 <li><button id="paintbrush" onclick="select_tool('paintbrush')">Paintbrush</button></li>
-                <li><button onclick="clear_canvas()">Clear Canvas</button></li>
+                <li><button id="clear_canvas" onclick="clear_canvas()">Clear Canvas</button></li>
                 <!-- To Do: Cache actions into session for data transfer
                 <li><button>Undo</button></li>
                 <li><button>Redo</button></li>
                 -->
             </ul>
+            <!-- To Do: Add Host Canvas and Join Canvas buttons -->
         </div>
 
         <div class="main">
@@ -50,6 +51,7 @@
 
         </div>
         <script src="static/js/whiteboard.js"></script>
+        <script src="static/js/websockets.js"></script>
     </div>
 </body>
 </html>
