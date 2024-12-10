@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 from flask_socketio import SocketIO, join_room, leave_room, send, emit, ConnectionRefusedError
 import datetime
 
+# TO DO NOTE: Before deployment & merging, transfer all code here into main.py bc that's what gunicorn calls atm on Render
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
@@ -24,6 +26,7 @@ def connect():
     global user_connection_counter # Global allows for variable to be modified
     user_connection_counter += 1
     print("User Connection Counter: " + str(user_connection_counter))
+    socketio.send(user_connection_counter)
 
 
 
