@@ -115,12 +115,13 @@ class Whiteboard{
     }
 
     save_canvas_data(){
-        this._canvas_image_data = this._context.getImageData(0, 0, this._context.width, this._context.height);
+        this._canvas_image_data = this._context.getImageData(0, 0, this._context.width, 5);
     }
 
     // External incoming canvas data
-    update_canvas_data(new_data){
-        this._context.putImageData(new_data, 0, 0);
+    update_canvas_data(server_canvas_data){
+        const imageData = new ImageData(new Uint8ClampedArray(server_canvas_data.image_data), server_canvas_data.width, server_canvas_data.height);
+        this._context.putImageData(imageData, 0, 0);
     }
 
     load_canvas_data(){
@@ -128,7 +129,7 @@ class Whiteboard{
     }
 
     get_canvas_data(){
-        return this._canvas_image_data
+        return this._canvas_image_data;
     }
 
     clear_canvas(){

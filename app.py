@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 user_connection_counter = 0;
-canvas_data = [];
+canvas_data = {'image_data': [], 'width': 0, 'height': 0}
 
 @app.route('/') # Decorator, called by a given URL
 def index():
@@ -23,9 +23,8 @@ def handle_message(data):
 
 @socketio.on('update')
 def update_canvas(data):
-    parsed_data = json.loads(data)
     global canvas_data
-    canvas_data = parsed_data.copy()
+    canvas_data = data
 
 @socketio.on('client_get')
 def send_client_data():

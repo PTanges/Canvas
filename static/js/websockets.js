@@ -24,7 +24,8 @@ function ping_server(){
 
 function update_server_data(){
     const canvas_data = whiteboard.get_canvas_data();
-    let json_data = JSON.stringify(canvas_data);
+    const imageDataArray = Array.from(canvas_data.data);  // Convert Canvas imagedata to plain array instead of uint8clampedarray
+    const json_data = { image_data: imageDataArray, width: canvas_data.width, height: canvas_data.height }; // Format outgoing data to be readable by server => incoming client
     socket.emit('update', json_data); // Emit are required for custom events
 }
 
