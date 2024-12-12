@@ -1,6 +1,6 @@
 # Canvas Back-End Logic
 from flask import Flask, render_template, request
-from flask_socketio import SocketIO, join_room, leave_room, send, emit, ConnectionRefusedError
+from flask_socketio import SocketIO, join_room, leave_room, send, emit
 import datetime
 
 # TO DO NOTE: Before deployment & merging, transfer all code here into main.py bc that's what gunicorn calls atm on Render

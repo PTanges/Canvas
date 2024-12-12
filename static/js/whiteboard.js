@@ -20,6 +20,8 @@ class Whiteboard{
         this.current_tool = "pen";
         this.current_colour = "black";
         this.current_tool_size = 5;
+
+        // this._isAutosave = False;
     }
 
     initialize(){
@@ -36,6 +38,17 @@ class Whiteboard{
         window.addEventListener('resize', this.resize_canvas.bind(this), false);
         this.resize_canvas();
         update_selected_tool_background_colour("pen");
+
+        this._canvas_image_data = this._context.getImageData(0, 0, this._context.height, this._context.width);
+
+        /*  Autosave Functionality:
+            autosave button onclick -> flip isAutosave bool, then check if false -> disable windows event
+                this._isAutosave = !this._isAutosave
+
+            if !this._isAutosave { disable windows event, clearInterval(timer) }
+
+            var timer = window.setInterval(whiteboard.canvas_snapshot('save'), time-by-ms)
+        */
     }
 
     mouse_enter_canvas(event){
@@ -78,10 +91,6 @@ class Whiteboard{
     }
 
     _erase_line(){
-        /* To Do: Implement transparent eraser & coloured bgs
-        - Current eraser (globalCO) does not work as intended
-        - Current eraser uses a WHITE brush to "erase" the Canvas
-        */
         this._context.globalCompositeOperation = "destination-out"; // Erase mode (set bitmap to transparent)
         this._context.lineWidth = this._tool_sizes[this._last_tool_size_index];
         this._context.lineCap = "square";
@@ -103,6 +112,24 @@ class Whiteboard{
         image.onload = () => {
             this._context.drawImage(image, 0, 0);
         };
+    }
+
+    save_canvas_data(){
+        this._canvas_image_data = this._context.getImageData(0, 0, this._context.height, this._context.width);
+    }
+
+    // External incoming canvas data
+    update_canvas_data(new_data){
+        // this._canvas_image_data = this._context.getImageData(0, 0, new_canvas_height, new_canvas_width)
+        pass
+    }
+
+    load_canvas_data(){
+        this._context.putImageData(this._canvas_image_data, 0, 0)
+    }
+
+    get_canvas_data(){
+        return this._canvas_image_data;
     }
 
     clear_canvas(){
@@ -199,8 +226,20 @@ function update_selected_tool_background_colour(){
             tool_button.style.backgroundColor = selected_tool_background_colour;
         }
     }
+}
 
-
+function canvas_snapshot(command){
+    // To Do: Feedback for save and loads
+    switch (command){
+        case "save": {
+            whiteboard.save_canvas_data();
+            break;
+        }
+        case "load": {whiteboard.load_canvas_data(); break;}
+        default: {
+            command = "none";
+        }
+    }
 }
 
 var whiteboard = new Whiteboard();

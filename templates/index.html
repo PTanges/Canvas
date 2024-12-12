@@ -27,10 +27,13 @@
                 <li><button id="tool_size" onclick="cycle_size()">Size: Default</button></li>
                 <li><button id="paintbrush" onclick="select_tool('paintbrush')">Paintbrush</button></li>
                 <li><button id="clear_canvas" onclick="clear_canvas()">Clear Canvas</button></li>
+                <li><button id="save_canvas" onclick="canvas_snapshot('save')">Take Snapshot</button></li>
+                <li><button id="load_canvas" onclick="canvas_snapshot('load')">Load Snapshot</button></li>
                 <li><button id="ping_server" onclick="ping_server()">Ping Server</button></li>
                 <!-- To Do: Store actions within JSON for data transfer
                 <li><button>Undo</button></li>
                 <li><button>Redo</button></li>
+                <li><button>Enable: Autosave</button></li>
                 -->
             </ul>
         </div>
