@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, join_room, leave_room, send, emit
 import datetime
+import json
 
 # TO DO NOTE: Before deployment & merging, transfer all code here into main.py bc that's what gunicorn calls atm on Render
 
@@ -9,6 +10,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 user_connection_counter = 0;
+canvas_data = [];
 
 @app.route('/') # Decorator, called by a given URL
 def index():
@@ -18,6 +20,17 @@ def index():
 def handle_message(data):
     date = datetime.datetime.now()
     print(f'{date} - Received Message: {data}')
+
+@socketio.on('update')
+def update_canvas(data):
+    parsed_data = json.loads(data)
+    global canvas_data
+    canvas_data = parsed_data.copy()
+
+@socketio.on('client_get')
+def send_client_data():
+    print(f'\t- Sending Data: {canvas_data}')
+    socketio.emit('receive_canvas_data', canvas_data)
 
 @socketio.on('connect') # On client connection to server
 def connect():

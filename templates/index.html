@@ -22,14 +22,18 @@
 
         <div class="left-aside">
             <ul id="toolbar">
-                <li><button id="pen" onclick="select_tool('pen')">Pen</button></li>
-                <li><button id="eraser" onclick="select_tool('eraser')">Eraser</button></li>
-                <li><button id="tool_size" onclick="cycle_size()">Size: Default</button></li>
-                <li><button id="paintbrush" onclick="select_tool('paintbrush')">Paintbrush</button></li>
-                <li><button id="clear_canvas" onclick="clear_canvas()">Clear Canvas</button></li>
-                <li><button id="save_canvas" onclick="canvas_snapshot('save')">Take Snapshot</button></li>
-                <li><button id="load_canvas" onclick="canvas_snapshot('load')">Load Snapshot</button></li>
-                <li><button id="ping_server" onclick="ping_server()">Ping Server</button></li>
+                <!-- setting script type = Module dictates a local scope for the JS files. Button onclick calls global scope ie inaccessible for Whiteboard.js & Websocket.js -->
+                <li><button id="pen">Pen</button></li>
+                <li><button id="eraser">Eraser</button></li>
+                <li><button id="tool_size">Size: Default</button></li>
+                <li><button id="paintbrush">Paintbrush</button></li>
+                <li><button id="clear_canvas">Clear Canvas</button></li>
+                <li><button id="save_canvas">Take Snapshot</button></li>
+                <li><button id="load_canvas">Load Snapshot</button></li>
+                <li><button id="ping_server">Ping Server</button></li>
+                <li><button id="get_server_data">Get Server Data</button></li>
+                <li><button id="update_server_data">Upload Canvas</button></li>
+
                 <!-- To Do: Store actions within JSON for data transfer
                 <li><button>Undo</button></li>
                 <li><button>Redo</button></li>
@@ -53,8 +57,8 @@
         <div class="footer">
 
         </div>
-        <script src="static/js/whiteboard.js"></script>
-        <script src="static/js/websockets.js"></script>
+        <script type="module" src="static/js/whiteboard.js"></script>
+        <script type="module" src="static/js/websockets.js"></script>
     </div>
 </body>
 </html>

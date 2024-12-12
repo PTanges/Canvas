@@ -115,21 +115,20 @@ class Whiteboard{
     }
 
     save_canvas_data(){
-        this._canvas_image_data = this._context.getImageData(0, 0, this._context.height, this._context.width);
+        this._canvas_image_data = this._context.getImageData(0, 0, this._context.width, this._context.height);
     }
 
     // External incoming canvas data
     update_canvas_data(new_data){
-        // this._canvas_image_data = this._context.getImageData(0, 0, new_canvas_height, new_canvas_width)
-        pass
+        this._context.putImageData(new_data, 0, 0);
     }
 
     load_canvas_data(){
-        this._context.putImageData(this._canvas_image_data, 0, 0)
+        this._context.putImageData(this._canvas_image_data, 0, 0);
     }
 
     get_canvas_data(){
-        return this._canvas_image_data;
+        return this._canvas_image_data
     }
 
     clear_canvas(){
@@ -244,3 +243,20 @@ function canvas_snapshot(command){
 
 var whiteboard = new Whiteboard();
 whiteboard.initialize();
+
+export default whiteboard;
+
+document.addEventListener('DOMContentLoaded', function() {
+    /*
+        Due to whiteboard being a module, button presses are locally scoped and need an event listener.
+        The function call by the event requires bind to set input value to default argument for the function,
+            with null as the default.
+    */
+    document.getElementById("pen").addEventListener("click", select_tool.bind(null, 'pen'));
+    document.getElementById("eraser").addEventListener("click", select_tool.bind(null, 'eraser'));
+    document.getElementById("tool_size").addEventListener("click", cycle_size);
+    document.getElementById("paintbrush").addEventListener("click", select_tool.bind(null, 'paintbrush'));
+    document.getElementById("clear_canvas").addEventListener("click", clear_canvas);
+    document.getElementById("save_canvas").addEventListener("click", canvas_snapshot.bind(null, 'save'));
+    document.getElementById("load_canvas").addEventListener("click", canvas_snapshot.bind(null, 'load'));
+});
