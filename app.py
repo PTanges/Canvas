@@ -9,7 +9,7 @@ import json
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
-user_connection_counter = 0;
+user_connection_counter = 0
 canvas_data = {'image_data': [], 'width': 0, 'height': 0}
 
 @app.route('/') # Decorator, called by a given URL

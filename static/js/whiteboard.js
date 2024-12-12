@@ -115,7 +115,7 @@ class Whiteboard{
     }
 
     save_canvas_data(){
-        this._canvas_image_data = this._context.getImageData(0, 0, this._context.width, 5);
+        this._canvas_image_data = this._context.getImageData(0, 0, this._context.width, 75);
     }
 
     // External incoming canvas data
